@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -29,43 +28,44 @@ class block_course_activity_list extends block_list {
     }
 
     public function get_content() {
-        global $COURSE, $CFG, $USER, $PAGE;
+        global $COURSE, $CFG, $USER;
         $courseid = $COURSE->id;
         $context = context_course::instance($courseid);
         $roles = get_user_roles($context, $USER->id, true);
         $role = key($roles);
-        if (isloggedin()){
-                    $activityname = '';
-                    $modinfo = get_fast_modinfo($courseid);
-                    $this->content = new stdClass();
-                    $this->content->items = array();
-                    $this->content->icons = array();
-                    $this->content->footer = "";
-                    foreach ($modinfo->cms as $cm) {
-                        $coursemod = $modinfo->get_cm($cm->id);
-                        if (!$cm->uservisible or ! $cm->has_view()) {
-                            continue;
-                        }
-                        if ($coursemod->name == 'label') {
-                            continue;
-                        }
-                        if ($coursemod->completion === 0 || empty($coursemod->completion) || $coursemod->completion == NULL){
-                            $cm_completed = '-';
-                        } else {
-                            $cm_completed = 'Completed';
-                        }
-                        $url = new moodle_url($CFG->wwwroot . '/mod/' . $coursemod->modname . '/view.php', array('id' => $coursemod->id));
-                        $activityname = $coursemod->id . ' - ' . $coursemod->name . ' - ' . date('d-M-Y',($coursemod->added/100)) . '  ' . $cm_completed;
-                        $this->content->items[] = html_writer::link($url, $activityname);
-                    }
+        if (isloggedin()) {
+            $activityname = '';
+            $modinfo = get_fast_modinfo($courseid);
+            $this->content = new stdClass();
+            $this->content->items = array();
+            $this->content->icons = array();
+            $this->content->footer = "";
+            foreach ($modinfo->cms as $cm) {
+                $coursemod = $modinfo->get_cm($cm->id);
+                if (!$cm->uservisible or ! $cm->has_view()) {
+                    continue;
+                }
+                if ($coursemod->name == 'label') {
+                    continue;
+                }
+                if ($coursemod->completion === 0 || empty($coursemod->completion) || $coursemod->completion == null) {
+                    $cmstatus = '-';
+                } else {
+                    $cmstatus = 'Completed';
+                }
+                $url = new moodle_url($CFG->wwwroot.'/mod/'.$coursemod->modname.'/view.php', array('id' => $coursemod->id));
+                $activityname = $coursemod->id.' - '.$coursemod->name.' - '.
+                date('d-M-Y', ($coursemod->added / 100)).' - '.$cmstatus;
+                $this->content->items[] = html_writer::link($url, $activityname);
+            }
 
             if (empty($this->content->items)) {
                 $this->content->items[] = get_string('activitynotfound', 'block_course_activity_list');
             }
-        return $this->content;
+            return $this->content;
+        }
     }
-    }
-    public function applicable_formats(){
+    public function applicable_formats() {
         return array(
             'course-view' => true,
             'course-view-social' => false
