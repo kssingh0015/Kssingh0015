@@ -20,7 +20,7 @@
  * @package    course_activity_list
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
     'block/course_activity_list:myaddinstance' => array(
         'captype' => 'write',
@@ -31,11 +31,11 @@ $capabilities = array(
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
     'block/course_activity_list:addinstance' => array(
-       'riskbitmask' => RISK_SPAM | RISK_XSS,
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_BLOCK,
-        'archetypes' => array(
-            'student' => CAP_ALLOW,
-        ),
+     'riskbitmask' => RISK_SPAM | RISK_XSS,
+     'captype' => 'write',
+     'contextlevel' => CONTEXT_BLOCK,
+     'archetypes' => array(
+        'student' => CAP_ALLOW,
     ),
+ ),
 );
