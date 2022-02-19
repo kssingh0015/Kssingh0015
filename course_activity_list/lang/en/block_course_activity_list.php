@@ -20,10 +20,10 @@
  * @package    course_activity_list
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['pluginname'] = 'course activity list';
-$string['activity_lists'] = 'activity list';
+$string['pluginname'] = 'course activity List';
+$string['activity_lists'] = 'Activity List';
 $string['course_activity_list:addinstance'] = 'Add a new Activity List block';
 $string['course_activity_list:myaddinstance'] = 'Add a new Activity List block to My Moodle page';
 $string['blocktitle'] = 'block title';
 $string['activitynotfound'] = 'Activity Not Found';
-$string['activitylist'] = 'activity list';
+$string['activitylist'] = 'Activity List';
