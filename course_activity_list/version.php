@@ -20,7 +20,7 @@
  * @package    course_activity_list
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-    defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die();
 $plugin->version   = 2022021500;
 $plugin->requires  = 2011111200;
 $plugin->component = 'block_course_activity_list';
